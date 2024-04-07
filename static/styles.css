@@ -1,0 +1,95 @@
+ /* Custom CSS for enhanced visual effects */
+ body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+.top-menu {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 20px;
+background-color: #f5f5f5;
+font-family: Arial, sans-serif;
+}
+
+.company-name {
+font-size: 24px;
+font-weight: bold;
+}
+
+.menu-options {
+display: flex;
+justify-content: center;
+gap: 20px;
+}
+
+.menu-option {
+font-size: 18px;
+font-weight: bold;
+color: #388e3c;
+text-decoration: none;
+transition: color 0.3s;
+}
+
+.menu-option:hover {
+color: #1e7e34;
+}
+
+.panel {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    transition: transform 0.3s;
+}
+.panel:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+h1 {
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 80%;  /* Set the maximum width of the image to 80% of the container */
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);  /* Add box shadow */
+    transition: transform 0.3s;  /* Add transition for hover effect */
+}
+img:hover {
+    transform: scale(1.05);  /* Add hover effect to scale the image */
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);  /* Adjust box shadow on hover */
+}
+.subpanel {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.subpanel h2 {
+    font-size: 1.5em;
+    color: #555;
+    text-align: center;
+    margin-bottom: 10px;
+}
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 20px;
+}
+body, html {
+margin: 0;
+padding: 0;
+background-color: #ffffcc; /* Light yellow background color */
+background-size: cover;
+}

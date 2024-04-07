@@ -1,0 +1,240 @@
+{% load static %}
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iCT9pYW9KWu7C6yWdswjWxRtr6aUlsiLJjTLQS9CumhveglH2e5gtLZOLcd" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iCT9pYW9KWu7C6yWdswjWxRtr6aUlsiLJjTLQS9CumhveglH2e5gtLZOLcd" crossorigin="anonymous">
+
+  <style>
+  /* Add your custom styles here, for example: */
+  body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffcc; /* Light yellow background color */
+  background-size: cover;
+}
+  .top-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+  }
+
+  .company-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .menu-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .menu-option {
+     font-size: 1.2em;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: bold;
+    /*color: #388e3c;*/
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .menu-option:hover {
+    color: #1e7e34;
+  }
+
+  .product-card {
+    flex-basis: calc(20% - 20px);
+    
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 220px; /* Adjust width as needed for desired image size */
+    margin-right: 20px; /* Add margin to create gap between cards */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    border-radius: 10px; /* Rounded corners */
+    transition: box-shadow 0.3s, transform 0.3s;; /* Smooth transition for shadow effect */
+    padding: 15px; /* Add padding for spacing within the cards */
+    background-color: #f5f5f5; /* Change background color for visual appeal */
+  }
+
+   
+
+  .product-card img {
+    width: 100%; /* Ensure images fill the card width */
+    height: 200px; /* Adjust height as needed */
+    object-fit: cover; /* Maintain aspect ratio and prevent stretching */
+    border-radius: 10px; /* Rounded corners for images */
+  }
+
+  .product-card .card-body {
+    text-align: center; /* Center-align the content within the card */
+    font-size: 1.0em;
+    line-height: 1.3;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  .pagination {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+    }
+
+    .pagination li {
+      margin: 0 4px; /* Adjust as needed */
+    }
+
+    .pagination a {
+      text-decoration: none;
+      color: #666;
+      font-size: 1.2em;
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .pagination a:hover {
+      background-color: #1e7e34;
+      color: #fff;
+    }
+
+    .pagination .page-item.active a {
+      background-color: #388e3c;
+      border-color: #388e3c;
+      color: #fff;
+    }
+  .product-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center-align the cards */
+    margin-right: -20px; /* Compensate for the margin-right on product-card */
+    margin-top: 20px; /* Add space after the top menu bar */
+    padding-top: 20px; /* Add padding for separation */
+  }
+
+
+
+
+  .site-name {
+    text-align: center;
+    margin-top: 40px; /* Increase the top margin for more space */
+    padding: 20px; /* Add padding to increase the size of the menu bar */
+    font-size: 24px; /* Increase the font size for better visibility */
+    background-color: #f8f9fa; /* Change the background color */
+    border-bottom: 2px solid #e9ecef; /* Add a border at the bottom for separation */
+  }
+
+  .product-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Enhanced shadow effect on hover */
+    transform: scale(1.05);  /* Add hover animation for zoom effect */
+    transition: box-shadow 0.3s, transform 0.3s ease-in-out;  /* Smooth transition */
+  }
+
+  .btn-primary {
+    background-color: #388e3c;  /* Change button color */
+  p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+        }
+ 
+  }
+  .pagination {
+  margin: 20px 0;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #388e3c;
+  border-color: #388e3c;
+  color: #fff;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="top-menu">
+      <div class="company-name">PRODUCTS</div>
+      <div class="menu-options">
+        <a href="{% url 'shopping:product_list' %}" class="menu-option">Home</a>
+        <a href="{% url 'shopping:api' %}" class="menu-option">Products</a>
+        <form class="search-form" action="{% url 'shopping:search' %}" method="get">
+          {% csrf_token %}
+          <input type="search" name="query" class="search-input" placeholder="Search Products">
+          <button type="submit" class="search-button">Search</button>
+        </form>
+      </div>
+    </div>
+    <div class="product-row">
+      {% for product in products %}
+      <div class="product-card">        
+        <!-- ... (existing product card content) ... -->
+        <a href="{% url 'shopping:product_detail' product.id %}" class="product-image-link">
+        {% if product.image %}
+        <img src="data:image/jpeg;base64,{{ product.image_base64 }}" class="card-img-top" alt="{{ product.name }}">
+        {% endif %}
+    </a>
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <!-- <p class="card-text">{{ product.description|truncatechars:50 }}</p> -->
+          <p class="card-text">
+            {% if product.discount_data %}
+              <del>Original Price: ${{ product.original_price|floatformat:"2" }}</del><br>
+              Discounted Price: ${{ product.discounted_price|floatformat:"2" }} ({{ product.discount_data|multiply:100|floatformat:"2" }}% off)
+            {% else %}
+              Price: ${{ product.original_price|floatformat:"2" }}
+            {% endif %}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% if paginator.num_pages > 1 %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a href="?page=1" class="page-link">Previous</a>
+      </li>
+    {% endif %}
+
+    {% for page_num in paginator.page_range %}
+      <li class="page-item {% if page_num == page_obj.number %}active{% endif %}">
+        <a href="?page={{ page_num }}" class="page-link">{{ page_num }}</a>
+      </li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a href="?page={{ paginator.num_pages }}" class="page-link">Next</a>
+      </li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+  </div>
+  
+  <script>
+    // Add advanced JavaScript functionalities here
+    // For example: Interactive filters, sorting, and animations
+    // Ensure smooth loading of product images and lazy loading for better performance
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-glznVEuQbrwKbTd7TNBvFFhS2yT5SU5CrhqhARhM3fuCBclLMzdyTgsFAa5y8fCq" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+ 
+</body>
+</html>

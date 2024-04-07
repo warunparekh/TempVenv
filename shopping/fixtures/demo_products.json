@@ -1,0 +1,29 @@
+[
+  {
+    "model": "shopping.product",
+    "fields": {
+      "name": "T-Shirt",
+      "description": "A comfortable and stylish T-shirt.",
+      "original_price": 19.99,  # Decimal value
+      "discount_data": 0.10,  # Optional decimal value
+      "image": ""  # Optional path to image (if using)
+    }
+  },
+  {
+    "model": "shopping.product",
+    "fields": {
+      "name": "Sweatshirt",
+      "description": "Warm and cozy sweatshirt for cooler days.",
+      "original_price": 39.99,
+      "image": ""  # Optional path to image (if using)
+    }
+  },
+  {
+    "model": "shopping.product",
+    "fields": {
+      "name": "Mug",
+      "description": "A beautiful mug for your morning coffee.",
+      "original_price": 9.99
+    }
+  }
+]
